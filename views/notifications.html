@@ -1,0 +1,89 @@
+{% include "./header.html" %}
+
+{% if !messages[0] %}
+  <div class="row">
+    <div class="col s12">
+      <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+        <h5 class="center">You have no messages.</h5>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <div class="row">
+    <div class="col s12">
+      <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+        <h5 class="center">Unread messages appear in purple at the top of this page. All other messages appear in light grey underneath.</h5>
+      </div>
+    </div>
+  </div>
+  <hr />
+  {% for message in messages %}
+    {% if message.read === false %}
+      <div class="row">
+        <div class="col s12">
+          <div class="deep-purple lighten-3 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+            <div class="row">
+              <div class="col s3">
+                {% if message.read %}
+                  <h5><a href="#!" class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%; font-size: 15px" id="message-state" data-state="read" data-id="{{message.id}}" data-username="{{username}}" data-type="{{type}}"><i class="fa fa-envelope left" aria-hidden="true"></i>Mark Unread</a></h5>
+                {% else %}
+                  <h5><a href="#!" class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%; font-size: 15px" id="message-state" data-state="unread" data-id="{{message.id}}" data-username="{{username}}" data-type="{{type}}"><i class="fa fa-envelope-open left" aria-hidden="true"></i>Mark Read</a></h5>
+                {% endif %}
+              </div>
+              <div class="col s3 center">
+                <h5><strong>{{message.subject}}</strong></h5>
+              </div>
+              <div class="col s3 center">
+                <h5>Date: {{message.date.day}}/{{message.date.month}}/{{message.date.year}}</h5>
+              </div>
+              <div class="col s3">
+                <h5><a href="#!" class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%; font-size: 15px" id="message-delete" data-id="{{message.id}}" data-username="{{username}}" data-type="{{type}}"><i class="material-icons left">delete</i>Delete</a></h5>
+              </div>
+            </div>
+            <p class="center"><strong></strong></p>
+            <hr />
+            <p>{{message.body}}</p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <hr />
+
+  {% for message in messages %}
+    {% if message.read %}
+      <div class="row">
+        <div class="col s12">
+          <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+            <div class="row">
+              <div class="col s3">
+                {% if message.read %}
+                  <h5><a href="#!" class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%; font-size: 15px" id="message-state" data-state="read" data-id="{{message.id}}" data-username="{{username}}" data-type="{{type}}"><i class="fa fa-envelope left" aria-hidden="true"></i>Mark Unread</a></h5>
+                {% else %}
+                  <h5><a href="#!" class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%; font-size: 15px" id="message-state" data-state="unread" data-id="{{message.id}}" data-username="{{username}}" data-type="{{type}}"><i class="fa fa-envelope-open left" aria-hidden="true"></i>Mark Read</a></h5>
+                {% endif %}
+              </div>
+              <div class="col s3 center">
+                <h5><strong>{{message.subject}}</strong></h5>
+              </div>
+              <div class="col s3 center">
+                <h5>Date: {{message.date.day}}/{{message.date.month}}/{{message.date.year}}</h5>
+              </div>
+              <div class="col s3">
+                <h5><a href="#!" class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%; font-size: 15px" id="message-delete" data-id="{{message.id}}" data-username="{{username}}" data-type="{{type}}"><i class="material-icons left">delete</i>Delete</a></h5>
+              </div>
+            </div>
+            <p class="center"><strong></strong></p>
+            <hr />
+            <p>{{message.body}}</p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<script src="/js/notifications.js"></script>
+
+{% include "./footer.html" %}

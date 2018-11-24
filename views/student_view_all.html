@@ -1,0 +1,57 @@
+{% include "./header.html" %}
+
+<div class="row">
+  <div class="col s12">
+    <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+      <h2 class="center">All Reports</h2>
+      <hr />
+      <table class="grey-text text-darken-3 bordered ">
+        <thead class="row">
+          <th class="col s1 center">Starred</th>
+          <th class="col s1 center">Subject</th>
+          <th class="col s1 center">Class</th>
+          <th class="col s1 center">Teacher</th>
+          <th class="col s1 center">Date</th>
+          <th class="col s1 center">Attainment</th>
+          <th class="col s1 center">Behaviour</th>
+          <th class="col s1 center">Contributions</th>
+          <th class="col s1 center">Effort</th>
+          <th class="col s2 center">Comment</th>
+          <th class="col s1 center">Staff</th>
+        </thead>
+        <tbody>
+          {% for report in data.feedback %}
+            {% if filter && report.starred || !filter %}
+              <tr class="row">
+                <td class="col s1 center" style="margin: 15px 0;">
+                  {% if report.starred %}
+                    <a id="change-starred" class="grey-text text-darken-3" data-id="{{ report.id }}" data-state="starred"><i class="fa fa-star" aria-hidden="true"></i></a>
+                  {% else %}
+                    <a id="change-starred" class="grey-text text-darken-3" data-id="{{ report.id }}" data-state="unstarred"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                  {% endif %}
+                </td>
+                <td class="col s1 center" style="margin: 15px 0;">{{ report.subject_display }}</td>
+                <td class="col s1 center" style="margin: 15px 0;">{{ report.class }}</td>
+                <td class="col s1 center" style="margin: 15px 0;">{{ report.sender.title }}. {{ report.sender.firstname[0] }} {{ report.sender.lastname }}</td>
+                <td class="col s1 center" style="margin: 15px 0;">{{ report.date.day }}/{{ report.date.month }}/{{ report.date.year }}</td>
+                <td class="col s1 center" style="margin: 15px 0;">{{ report.attainment }}/5</td>
+                <td class="col s1 center" style="margin: 15px 0;">{{ report.behaviour }}/5</td>
+                <td class="col s1 center" style="margin: 15px 0;">{{ report.contributions }}/5</td>
+                <td class="col s1 center" style="margin: 15px 0;">{{ report.effort }}/5</td>
+                <td class="col s2 center" style="margin: 15px 0;">{{ report.comment }}</td>
+                <td class="col s1 center" style="margin: 15px 0;">{% for staff in report.staff %}{{ staff.title }}. {{ staff.firstname[0] }} {{ staff.lastname }}<br />{% endfor %}</td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+      {% if !data.feedback || !data.feedback[0] %}
+        <p class="center">You have no feedback to view.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script src="/js/student_reports.js"></script>
+
+{% include "./footer.html" %}

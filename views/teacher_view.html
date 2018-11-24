@@ -1,0 +1,144 @@
+{% include "./header.html" %}
+
+<div class="row">
+  <div class="col s6">
+    <div class="grey lighten-2 grey-text text-darken-3 center" style="border-radius:20px; margin-top:15px; padding: 15px;">
+      <h2 class="center">Submit Report</h2>
+      <hr />
+      <div id="reports">
+        {% for report in data %}
+          {% if report.data[0] %}
+            <h5 class="center">{{ report.subject_display }} - {{ report.class }}</h5>
+            {% for student in report.data %}
+              <div class="row">
+                <a href="../submit?username={{ student.username }}&firstname={{ student.firstname }}&lastname={{ student.lastname }}&subject={{ student.subject }}&subject_display={{ student.subject_display }}&class={{ student.class|url_encode }}" class="waves-effect waves-light btn deep-purple darken-4 white-text center" style="width: 90%" ><i class="material-icons left">launch</i>{{ student.firstname }} {{ student.lastname }}</a>
+              </div>
+            {% endfor %}
+            <hr />
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="col s4 offset-s2">
+    <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+      <h2 class="center">Track Student</h2>
+      <hr />
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="track-student-user" type="text">
+          <label for="track-student-user">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <a href="#modal-track-user" id="track-user" class="modal-trigger waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%" data-username="{{ username }}"><i class="material-icons left">perm_identity</i>Find Reports</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal-track-user" class="modal">
+  <div class="modal-content black-text">
+    <h4>Track Student</h4>
+    <hr />
+    <div class="row">
+      <div class="col s3 center">
+        <h5>Forename</h5>
+        <p id="track-student-firstname"></p>
+      </div>
+      <div class="col s3 center">
+        <h5>Surname</h5>
+        <p id="track-student-lastname"></p>
+      </div>
+      <div class="col s3 center">
+        <h5>Year Group</h5>
+        <p id="track-student-year"></p>
+      </div>
+      <div class="col s3 center">
+        <h5>Username</h5>
+        <p id="track-student-username"></p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col s12">
+        <table class="grey-text text-darken-3 bordered">
+          <thead class="row">
+            <th class="col s2 center">Subject</th>
+            <th class="col s2 center">Class</th>
+            <th class="col s2 center">Teacher</th>
+            <th class="col s2 center">Date</th>
+            <th class="col s2 center">Staff</th>
+            <th class="col s2 center">View</th>
+          </thead>
+          <tbody id="feedback">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Close</a>
+  </div>
+</div>
+
+<div id="modal-view-report" class="modal">
+  <div class="modal-content black-text">
+    <h4>View Report</h4>
+    <hr />
+    <div class="row">
+      <div class="col s3 center">
+        <h5>Subject</h5>
+        <p id="view-report-subject"></p>
+      </div>
+      <div class="col s3 center">
+        <h5>Class</h5>
+        <p id="view-report-class"></p>
+      </div>
+      <div class="col s3 center">
+        <h5>Date</h5>
+        <p id="view-report-date"></p>
+      </div>
+      <div class="col s3 center">
+        <h5>Teacher</h5>
+        <p id="view-report-teacher"></p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col s3 center">
+        <h5>Attainment</h5>
+        <p id="view-report-attainment"></p>
+      </div>
+      <div class="col s3 center">
+        <h5>Behaviour</h5>
+        <p id="view-report-behaviour"></p>
+      </div>
+      <div class="col s3 center">
+        <h5>Contributions</h5>
+        <p id="view-report-contributions"></p>
+      </div>
+      <div class="col s3 center">
+        <h5>Effort</h5>
+        <p id="view-report-effort"></p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col s12 center">
+        <h5>Comment</h5>
+        <p id="view-report-comment"></p>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Close</a>
+  </div>
+</div>
+
+<script src="/js/teacher_track.js"></script>
+
+{% include "./footer.html" %}

@@ -1,0 +1,152 @@
+{% include "./header.html" %}
+
+<div class="row">
+  <div class="col s5">
+    <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+      <h2 class="center">Subjects</h2>
+      <hr />
+      <table class="bordered highlight center grey-text text-darken-3">
+        <thead>
+          <th>Subject</th>
+          <th>Class</th>
+          <th>Feedback</th>
+        </thead>
+        <tbody id="subjects">
+          {% for subject in data.classes %}
+            <tr id="subject-{{subject.subject}}">
+              <td id="subject"><p>{{ subject.subject_display }}</p></td>
+              <td id="class"><p>{{ subject.class }}</p></td>
+              <td id="feedback">
+                <div class="switch">
+                  <label>
+                    No
+                    <input type="checkbox" {% if subject.feedback == "true" %} checked {% endif %} id="feedback-{{subject.subject}}" data-subject="{{subject.subject}}">
+                    <span class="lever"></span>
+                    Yes
+                  </label>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <hr />
+      <a href="#!" class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%" id="subjects-save"><i class="fa fa-floppy-o left" aria-hidden="true"></i>Save</a>
+    </div>
+  </div>
+  <div class="col s5 offset-s2">
+    <div class="row">
+      <div class="col s12">
+        <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+          <h2 class="center">Navigation</h2>
+          <hr />
+          <div class="row center">
+            <a href="all" class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 90%" ><i class="material-icons left">launch</i>All Reports</a>
+          </div>
+          <div class="row center">
+            <a href="starred" class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 90%" ><i class="material-icons left">launch</i>Starred Reports</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+          <h2 class="center">Recent Reports</h2>
+          <hr />
+          {% for report in data.feedback|reverse %}
+            {% if loop.index < 4 %}
+              <div class="row">
+                <div class="col s6 center">
+                  <p><strong>{{ report.subject_display }}</strong></p>
+                </div>
+                <div class="col s6 center">
+                  <p>{{ report.date.day }}/{{ report.date.month }}/{{ report.date.year }}</p>
+                </div>
+                <div class="col s6 center">
+                  <p>{{ report.class }}</p>
+                </div>
+                <div class="col s6">
+                  <a href="#modal-feedback-{{ report.id }}" class="modal-trigger waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%" id="open-feedback"><i class="fa fa-envelope-open left" aria-hidden="true"></i>Open</a>
+                  <div id="modal-feedback-{{ report.id }}" class="modal modal-fixed-footer">
+                    <div class="modal-content black-text">
+                    </p>
+                      <h4>Recent Feedback</h4>
+                      <hr />
+                      <div class="row">
+                        <div class="col s3 center">
+                          <h5>Subject</h5>
+                          <p>{{ report.subject_display }}</p>
+                        </div>
+                        <div class="col s3 center">
+                          <h5>Class</h5>
+                          <p>{{ report.class }}</p>
+                        </div>
+                        <div class="col s3 center">
+                          <h5>Date</h5>
+                          <p>{{ report.date.day }}/{{ report.date.month }}/{{ report.date.year }}</p>
+                        </div>
+                        <div class="col s3 center">
+                          <h5>Teacher</h5>
+                          <p>{{ report.sender.title }}. {{ report.sender.firstname[0] }} {{ report.sender.lastname }}</p>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col s3 center">
+                          <h5>Attainment</h5>
+                          <p>{{ report.attainment }}/5</p>
+                        </div>
+                        <div class="col s3 center">
+                          <h5>Behaviour</h5>
+                          <p>{{ report.behaviour }}/5</p>
+                        </div>
+                        <div class="col s3 center">
+                          <h5>Contributions</h5>
+                          <p>{{ report.contributions }}/5</p>
+                        </div>
+                        <div class="col s3 center">
+                          <h5>Effort</h5>
+                          <p>{{ report.effort }}/5</p>
+                        </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                        <div class="col s9 center">
+                          <h5>Comment</h5>
+                          <p>{{ report.comment }}</p>
+                        </div>
+                        <div class="col s3 center">
+                          <h5>Starred</h5>
+                          {% if report.starred %}
+                            <a id="change-starred" class="grey-text text-darken-3" data-id="{{ report.id }}" data-state="starred"><i class="fa fa-star" aria-hidden="true"></i></a>
+                          {% else %}
+                            <a id="change-starred" class="grey-text text-darken-3" data-id="{{ report.id }}" data-state="unstarred"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Close</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% if loop.index != 3 %}
+              <hr />
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% if !data.feedback || !data.feedback[0] %}
+            <p class="center">You have no feedback to view.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/submit_subjects.js"></script>
+<script src="/js/student_reports.js"></script>
+
+{% include "./footer.html" %}

@@ -1,0 +1,54 @@
+body {
+  background-image: url("/img/background.png");
+  background-size: 100% 120%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([readonly])+label, input[type=email]:focus:not([readonly])+label, input[type=url]:focus:not([readonly])+label, input[type=time]:focus:not([readonly])+label, input[type=date]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
+	color: #311b92;
+}
+
+input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+	border-bottom: 1px solid #311b92;
+	box-shadow: 0 1px 0 0 #311b92;
+}
+
+.show-bullet-points li {
+  list-style-type: disc;
+  position: relative;
+  left: 16px;
+}
+
+.nav-wrapper .dropdown-content {
+	margin-top:64px
+}
+
+.nav-wrapper .dropdown-content, .switch label input[type=checkbox]:checked+.lever:after, input[type=range] + .thumb, input[type=range]::-webkit-slider-thumb {
+	background-color: #311b92;
+}
+
+input[type=range]::-moz-slider-thumb {
+	background-color: #311b92;
+}
+
+input[type=range]::-ms-slider-thumb {
+	background-color: #311b92;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+	background-color: #9a7fcc;
+}
+
+.nav-wrapper .dropdown-content li a {
+	color: #ede7f6;
+}
+
+.nav-wrapper .dropdown-content li:hover {
+	background-color: #4527a0;
+}
+
+[type="radio"]:checked+label:after {
+  background-color: #311b92;
+  border-color: #311b92;
+}

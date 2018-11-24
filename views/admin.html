@@ -1,0 +1,174 @@
+{% include "./header.html" %}
+
+<div class="row">
+  <div class="col s5">
+    <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+      <h2 class="center">New User</h2>
+      <hr />
+      <a href="#modal-new-student" class="modal-trigger waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%"><i class="material-icons left">perm_identity</i>New Student</a>
+      <hr />
+      <a href="#modal-new-teacher" class="modal-trigger waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%"><i class="material-icons left">perm_identity</i>New Teacher</a>
+      <hr />
+      <a href="#modal-new-admin" class="modal-trigger waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%"><i class="material-icons left">perm_identity</i>New Admin</a>
+    </div>
+  </div>
+  <div class="col s5 offset-s2">
+    <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+      <h2 class="center">Edit User</h2>
+      <hr />
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="edit-user-username" type="text">
+          <label for="edit-user-username">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <a href="#modal-edit-user" id="edit-user-modal" class="modal-trigger waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%"><i class="material-icons left">perm_identity</i>Edit User</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modal-new-student" class="modal modal-fixed-footer">
+  <div class="modal-content black-text">
+    <h4>New Student</h4>
+    <hr />
+    <div class="row">
+      <div class="input-field col s4">
+        <input id="username" type="text">
+        <label for="username">Username</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="password" type="password">
+        <label for="password">Password</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="startyear" type="number">
+        <label for="startyear">Start Year</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="firstname" type="text">
+        <label for="firstname">Forename</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="lastname" type="text">
+        <label for="lastname">Surname</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s8">
+        <textarea id="subjects" class="materialize-textarea"></textarea>
+        <label for="subjects">Subjects (One Per Line)</label>
+      </div>
+      <div class="input-field col s4" style="margin-top: 45px;">
+        <a class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%" id="classes-generate"><i class="material-icons left">done</i>Update</a>
+      </div>
+    </div>
+    <div id="classes"></div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
+    <a href="#!" class=" modal-action waves-effect waves-light btn-flat" id="add-student">Add</a>
+  </div>
+</div>
+
+<div id="modal-new-teacher" class="modal">
+  <div class="modal-content black-text">
+    <h4>New Teacher</h4>
+    <hr />
+    <div class="row">
+      <div class="input-field col s4">
+        <input id="username" type="text">
+        <label for="username">Username</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="password" type="password">
+        <label for="password">Password</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="title" type="text">
+        <label for="title">Title</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="firstname" type="text">
+        <label for="firstname">Forename</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="lastname" type="text">
+        <label for="lastname">Surname</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s8">
+        <textarea id="classes" class="materialize-textarea"></textarea>
+        <label for="classes">Classes (One Per Line)</label>
+      </div>
+      <div class="input-field col s4" style="margin-top: 45px;">
+        <a class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%" id="subjects-generate"><i class="material-icons left">done</i>Update</a>
+      </div>
+    </div>
+    <div id="subjects"></div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
+    <a href="#!" class=" modal-action waves-effect waves-light btn-flat" id="add-teacher">Add</a>
+  </div>
+</div>
+
+<div id="modal-new-admin" class="modal">
+  <div class="modal-content black-text">
+    <h4>New Admin</h4>
+    <hr />
+    <div class="row">
+      <div class="input-field col s4">
+        <input id="username" type="text">
+        <label for="username">Username</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="password" type="password">
+        <label for="password">Password</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="title" type="text">
+        <label for="title">Title</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="firstname" type="text">
+        <label for="firstname">Forename</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="lastname" type="text">
+        <label for="lastname">Surname</label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
+    <a href="#!" class=" modal-action waves-effect waves-light btn-flat" id="add-admin">Add</a>
+  </div>
+</div>
+
+<div id="modal-edit-user" class="modal modal-fixed-footer">
+  <div class="modal-content black-text">
+    <h4>Edit User</h4>
+    <hr />
+    <div id="edit-user-data" data-type data-username data-id></div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Cancel</a>
+    <a href="#!" class=" modal-action waves-effect waves-light btn-flat" id="edit-user">Edit</a>
+    <a href="#!" class=" modal-action waves-effect waves-light btn-flat" id="delete-user">Delete</a>
+  </div>
+</div>
+
+<script src="/js/admin.js"></script>
+
+{% include "./footer.html" %}

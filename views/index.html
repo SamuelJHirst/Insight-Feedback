@@ -1,0 +1,77 @@
+{% include "./header.html" %}
+<div class="row">
+  <div class="col s6">
+    <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+      <h2 class="center">Student Feedback</h2>
+      <hr />
+      <p>Welcome to the Student Feedback system for Mount Orange School!</p>
+      <p>Logging into this website will give you a list of all of your subjects. If you feel that you are struggling in a lesson, or are otherwise worried by your progress, you can select those subjects. Your teachers will then be notified of this and will be asked to complete a short report on 4 areas:</p>
+      <ul class="show-bullet-points">
+        <li>Attainment</li>
+        <li>Behaviour</li>
+        <li>Contributions</li>
+        <li>Effort</li>
+      </ul>
+      <p>As well as these areas, your teachers will also write a short comment to reflect your overall attitude to the lesson. This report will then be sent back to you, and you will then be able to see how you did. You can even favourite them if you want to!</p>
+      <p>Members of staff other than your subject teacher may also want to see the reports generated. Where this is the case, the report will also be sent to that member of staff. You will see a list of who the list has been sent to.</p>
+      <p>The idea behind this system is that you have something to work towards: a positive report. It may also relieve any worries that you may have about your progress in that subject.</p>
+      <p>If you have any difficulties using this system or require further support, please contact the network administrators.</p>
+      <p class="center"><em>The Student Feedback system was made by the Head Student Team of 2017/2018.</em></p>
+    </div>
+  </div>
+  <div class="col s4 offset-s2">
+    <div class="grey lighten-2 grey-text text-darken-3" style="border-radius:20px; margin-top:15px; padding: 15px;">
+      <h2 class="center">Log In</h2>
+      <hr />
+      {% if login_state %}
+        <div class="row red darken-4 white-text center" style="border-radius:20px; padding: 1px;">
+          {% if login_state == "invalid_login" %}
+            <p>Your username or password was incorrect.</p>
+          {% else %}
+            <p>An unknown error occurred.</p>
+          {% endif %}
+        </div>
+        <hr />
+      {% endif %}
+      <form>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="username" type="text">
+            <label for="username">Username</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password" type="password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <a class="waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%" id="login"><i class="material-icons left">perm_identity</i>Log In</a>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="input-field col s12">
+            <a href="#modal-forgot-password" class="modal-trigger waves-effect waves-light btn deep-purple darken-4 white-text" style="width: 100%"><i class="material-icons left">visibility_off</i>Forgot Password</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="modal-forgot-password" class="modal">
+  <div class="modal-content black-text">
+    <h4>Forgot Password</h4>
+    <hr />
+    <p>If you have forgotten your password, please contact the network administrators.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Okay</a>
+  </div>
+</div>
+
+<script src="/js/login.js"></script>
+{% include "./footer.html" %}
